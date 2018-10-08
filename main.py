@@ -19,6 +19,22 @@ def check_pwd(pwd):
 
     return any([c.islower() for c in pwd]) and any([c.isupper() for c in pwd]) and pwd[-1].isdigit()
 
+def insertion_sort(unsorted_list):
+    ''' returns a copy of the argument sorted using a list and the insertion sort algorithm '''
+
+    sorted_list = list()
+
+    for u_item in unsorted_list:
+        for i, s_item in reversed(list(enumerate(sorted_list))):
+            if u_item > s_item:
+                sorted_list.insert(i+1, u_item)
+                break
+        else:
+            sorted_list.insert(0, u_item)
+
+    return sorted_list
+
+
 class AllTest(unittest.TestCase):
     ''' Test cases for all functions '''
 
@@ -44,6 +60,24 @@ class AllTest(unittest.TestCase):
         self.assertFalse(check_pwd('VERBOSE1'))
         self.assertFalse(check_pwd('1Verbose'))
         self.assertFalse(check_pwd('Ver1Bose'))
+
+    def test_insertion_sort(self):
+        ''' test insertion_sort(list) '''
+
+        seq = [3,2,5,7,1]
+        self.assertEqual(insertion_sort(seq), sorted(seq))
+
+        seq = [1,2,3,4,5,6,7,8]
+        self.assertEqual(insertion_sort(seq), sorted(seq))
+
+        seq = []
+        self.assertEqual(insertion_sort(seq), sorted(seq))
+
+        seq = [-1,-2,-3,-4,-5,-6]
+        self.assertEqual(insertion_sort(seq), sorted(seq))
+
+        seq = [1, 5, 3, 3]
+        self.assertEqual(insertion_sort(seq), sorted(seq))
 
 
 if __name__ == "__main__":
