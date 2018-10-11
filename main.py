@@ -80,18 +80,23 @@ class AllTest(unittest.TestCase):
         seq = [1, 5, 3, 3]
         self.assertEqual(insertion_sort(seq), sorted(seq))
 
+    def test_btree(self):
+        ''' Test BTree insert, traverse and find '''
+
+        bt = BTree(27)
+        bt.insert(1)
+        bt.insert(15)
+        bt.insert(5)
+        bt.insert(5)
+        bt.insert(50)
+        
+        self.assertEqual(bt.traverse(), [1,5,15,27,50])
+        self.assertTrue(bt.find(5))
+        self.assertTrue(bt.find(50))
+        self.assertFalse(bt.find(55))
+
 
 if __name__ == "__main__":
     ''' This is executed when run from the command line '''
 
-    # unittest.main(exit=False, verbosity=2)
-    bt = BTree(27)
-    bt.insert(1)
-    bt.insert(15)
-    bt.insert(5)
-    bt.insert(5)
-    bt.insert(50)
-    print(bt.traverse())
-    print(bt.find(5))
-    print(bt.find(50))
-
+    unittest.main(exit=False, verbosity=2)
