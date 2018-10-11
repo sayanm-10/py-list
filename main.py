@@ -6,6 +6,7 @@ __version__ = "0.1.0"
 __license__ = "MIT"
 
 import unittest
+from btree import BTree 
 
 def remove_vowels(string):
     ''' uses a list comprehension and returns a copy of the string with no vowels '''
@@ -83,4 +84,14 @@ class AllTest(unittest.TestCase):
 if __name__ == "__main__":
     ''' This is executed when run from the command line '''
 
-    unittest.main(exit=False, verbosity=2)
+    # unittest.main(exit=False, verbosity=2)
+    bt = BTree(27)
+    bt.insert(1)
+    bt.insert(15)
+    bt.insert(5)
+    bt.insert(5)
+    bt.insert(50)
+    print(bt.traverse())
+    print(bt.find(5))
+    print(bt.find(50))
+
